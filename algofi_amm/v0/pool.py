@@ -418,6 +418,9 @@ class Pool:
         if params is None:
             params = get_params(self.algod)
 
+        # Set higher fee for Nanoswap txs
+        if self.pool_type == PoolType.NANOSWAP:
+            fee = 10000
 
         # send swap in asset
         txn0 = get_payment_txn(params, sender, self.address, swap_in_amount, swap_in_asset.asset_id)
@@ -457,6 +460,10 @@ class Pool:
         """
         if params is None:
             params = get_params(self.algod)
+
+        # Set higher fee for Nanoswap txs
+        if self.pool_type == PoolType.NANOSWAP:
+            fee = 10000
 
         # send swap in asset
         txn0 = get_payment_txn(params, sender, self.address, swap_in_amount, swap_in_asset.asset_id)
